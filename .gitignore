@@ -1,0 +1,41 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Cmake build folder
+build/
+
+#
+!foreign/irrKlang-1.6.0/lib/Win32-visualStudio/*
+!foreign/irrKlang-1.6.0/bin/win32-visualStudio/*
+/.vs
+/foreign/irrKlang-1.6.0/examples.net
