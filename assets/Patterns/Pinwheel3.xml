@@ -1,0 +1,63 @@
+<bulletml type="vertical" 
+    xmlns="http://www.asahi-net.or.jp/~cs8k-cyu/bulletml">
+
+    <action label="top">
+	<actionRef label="pinwheel">
+		<param>0</param>
+		<param>9</param>
+		<param>10</param>
+	</actionRef>
+	<actionRef label="pinwheel">
+		<param>45</param>
+		<param>7</param>
+		<param>15</param>
+	</actionRef>
+    </action>
+
+    <action label="pinwheel">
+	<bulletRef label="pinwheel">
+		<param>0 + $1</param>
+		<param>$2</param>
+		<param>$3</param>
+	</bulletRef>
+	<bulletRef label="pinwheel">
+		<param>90 + $1</param>
+		<param>$2</param>
+		<param>$3</param>
+	</bulletRef>
+	<bulletRef label="pinwheel">
+		<param>180 + $1</param>
+		<param>$2</param>
+		<param>$3</param>
+	</bulletRef>
+	<bulletRef label="pinwheel">
+		<param>270 + $1</param>
+		<param>$2</param>
+		<param>$3</param>
+	</bulletRef>
+    </action>
+
+    <bullet label="pinwheel">
+	<action>
+	<vanish/>
+	<fire>
+		<direction type="absolute">$1</direction>
+		<speed>$2</speed>
+		<bullet/>
+	</fire>
+	<wait>6</wait>
+	<repeat>
+	<times>8</times>
+	<action>
+	<fire>
+		<direction type="sequence">$3</direction>
+		<speed>$2</speed>
+		<bullet/>
+	</fire>
+	</action>
+	<wait>2</wait>
+	</repeat>
+	</action>
+    </bullet>
+
+</bulletml>

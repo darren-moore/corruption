@@ -1,0 +1,41 @@
+<bulletml type="vertical"
+	xmlns="http://www.asahi-net.or.jp/~cs8k=cyu/bulletml">
+
+	<action label="top">
+		<repeat>
+		<times>5</times>
+		<action>
+			<fire>
+				<bulletRef label="spread">
+					<param>6</param>
+					<param>15</param>
+				</bulletRef>
+			</fire>
+		</action>
+		<wait>9</wait>
+		</repeat>
+	</action>
+
+	<bullet label="spread">
+		<direction type="absolute">90</direction>
+		<speed>25</speed>
+		<action>
+		<vanish/>
+		<fire>
+			<direction type="absolute">90 - ($2* ($1 - 1) / 2)</direction>
+			<speed>5</speed>
+			<bullet/>
+		</fire>
+		<repeat>
+		<times>$1 - 1</times>
+			<action>
+			<fire>
+				<direction type="sequence">$2</direction>
+				<speed>5</speed>
+				<bullet/>
+			</fire>
+			</action>
+		</repeat>
+		</action>
+	</bullet>
+</bulletml>

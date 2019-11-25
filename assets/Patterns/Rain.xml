@@ -1,0 +1,55 @@
+<bulletml type="vertical"
+	xmlns="http://www.asahi-net.or.jp/~cs8k=cyu/bulletml">
+
+	<action label="top">
+		<actionRef label="circle">
+			<param>0</param>
+			<param>5</param>
+			<param>60</param>
+		</actionRef>
+		<wait>10</wait>
+		<actionRef label="circle">
+			<param>15</param>
+			<param>5</param>
+			<param>60</param>
+		</actionRef>
+		<wait>15</wait>
+		<actionRef label="circle">
+			<param>-15</param>
+			<param>5</param>
+			<param>60</param>
+		</actionRef>
+	</action>
+
+	<action label="circle">
+		<fire>
+			<direction type="absolute">$1</direction>
+			<bulletRef label="arc">
+				<param>8</param>
+				<param>15</param>
+			</bulletRef>
+		</fire>
+		<repeat>
+		<times>$2</times>
+		<action>
+		<fire>
+			<direction type="sequence">$3</direction>
+			<bulletRef label="arc">
+				<param>8</param>
+				<param>18</param>
+			</bulletRef>
+		</fire>
+		</action>
+		</repeat>
+	</action>
+
+	<bullet label="arc">
+		<speed>$1</speed>
+		<action>
+		<changeDirection>
+			<direction type="aim">90</direction>
+			<term>$2</term>
+		</changeDirection>
+		</action>
+	</bullet>
+</bulletml>

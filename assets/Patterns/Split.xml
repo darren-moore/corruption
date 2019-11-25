@@ -1,0 +1,42 @@
+<bulletml type="vertical"
+	xmlns="http://www.asahi-net.or.jp/~cs8k=cyu/bulletml">
+
+	<action label="top">
+		<action>
+			<fire>
+				<direction type="absolute">90</direction>
+				<speed>4</speed>
+				<bulletRef label="spread">
+				<param>25</param>
+				<param>3</param>
+				<param>6</param>
+				</bulletRef>
+			</fire>
+		</action>
+	</action>
+
+	<bullet label="spread">
+		<action>
+		<wait>$1</wait>
+		<fire>
+			<speed>3 + $rand * 3</speed>
+			<direction type="absolute">120</direction>
+			<bulletRef label="spread">
+			<param>$1 + $2</param>
+			<param>$2</param>
+			<param>$3</param>
+			</bulletRef>
+		</fire>
+		<fire>
+			<speed>3 + $rand * 3</speed>
+			<direction type="absolute">60</direction>
+			<bulletRef label="spread">
+			<param>$1 + $3</param>
+			<param>$2</param>
+			<param>$3</param>
+			</bulletRef>
+		</fire>
+		<vanish/>
+		</action>
+	</bullet>
+</bulletml>

@@ -1,0 +1,29 @@
+<bulletml type="vertical"
+	xmlns="http://www.asahi-net.or.jp/~cs8k=cyu/bulletml">
+
+	<action label="top">
+		<repeat>
+		<times>5 + $rand * 3</times>
+		<action>
+		<fire>
+		<direction type="aim">($rand - 0.5) * 20</direction>
+		<bulletRef label="boomerang">
+			<param>12 + $rand * 10</param>
+			<param>90</param>
+		</bulletRef>
+		</fire>
+		<wait>12</wait>
+		</action>
+		</repeat>
+	</action>
+
+	<bullet label="boomerang">
+		<speed>$1</speed>
+		<action>
+		<changeSpeed>
+			<speed>-$1</speed>
+			<term>$2</term>
+		</changeSpeed>
+		</action>
+	</bullet>
+</bulletml>

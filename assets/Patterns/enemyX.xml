@@ -1,0 +1,53 @@
+<bulletml type="horizontal" 
+    xmlns="http://www.asahi-net.or.jp/~cs8k-cyu/bulletml">
+
+    <action label="top">
+        <repeat>
+            <times>36</times>
+            <action>
+                <fire>
+                    <direction type="sequence">10</direction>
+                    <bulletRef label="bomb_shot"/>
+                </fire>
+                
+            </action>
+            <wait>1</wait>
+        </repeat>
+    </action>
+
+    <bullet label="bomb_shot">
+        <speed>3</speed>
+        <action>
+            <changeSpeed>
+                <speed>1</speed>
+                <term>20</term>
+            </changeSpeed>
+            <wait>50</wait>
+            <repeat>
+                <times>10</times>
+                <action>
+                    <fire>
+                        <direction type="sequence">36</direction>
+                        <speed>15*0.2 + $rank * 0.2</speed>
+                        <bullet/>
+                    </fire>
+                </action>
+            </repeat>
+            <vanish/>
+        </action>
+    </bullet>
+
+    <bullet label="frags">
+        <action>
+            <changeSpeed>
+                <speed>0</speed>
+                <term>60</term>
+            </changeSpeed>
+            <fire>
+                <direction type="sequence">36</direction>
+                <speed>0.2 + $rank * 0.2</speed>
+                <bullet/>
+            </fire>
+        </action>
+    </bullet>
+</bulletml>

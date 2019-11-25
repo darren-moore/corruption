@@ -1,0 +1,140 @@
+<bulletml type="vertical" 
+    xmlns="http://www.asahi-net.or.jp/~cs8k-cyu/bulletml">
+
+    <action label="top">
+	<repeat>
+	<times>24</times>
+	<action>
+	<fire>
+	<direction type="sequence">15</direction>
+	<speed>5</speed>
+	<bulletRef label="crawl">
+	<param>5</param>
+	<param>30</param>
+	<param>15</param>
+	</bulletRef>
+	</fire>
+	</action>
+	</repeat>
+
+	<wait>20</wait>
+	<fire>
+	<direction type="absolute">15</direction>
+	<speed>2</speed>
+	<bulletRef label="exploding">
+	</bulletRef>
+	</fire>
+	<repeat>
+	<times>11</times>
+	<action>
+	<fire>
+	<direction type="sequence">30</direction>
+	<speed>2</speed>
+	<bulletRef label="exploding">
+	</bulletRef>
+	</fire>
+	</action>
+	</repeat>
+
+	<wait>20</wait>
+	<fire>
+	<direction type="absolute">7.5</direction>
+	<speed>5</speed>
+	<bulletRef label="crawl">
+	<param>5</param>
+	<param>30</param>
+	<param>15</param>
+	</bulletRef>
+	</fire>
+	<repeat>
+	<times>23</times>
+	<action>
+	<fire>
+	<direction type="sequence">15</direction>
+	<speed>5</speed>
+	<bulletRef label="crawl">
+	<param>5</param>
+	<param>30</param>
+	<param>15</param>
+	</bulletRef>
+	</fire>
+	</action>
+	</repeat>
+    </action>
+
+    <bullet label="crawl">
+	<action>
+		<changeSpeed>
+			<speed>0</speed>
+			<term>20</term>
+		</changeSpeed>
+	<wait>$2</wait>
+	</action>
+	<action>
+		<changeSpeed>
+			<speed>$1</speed>
+			<term>10</term>
+		</changeSpeed>
+	<wait>$3</wait>
+	</action>
+	<action>
+		<changeSpeed>
+			<speed>0</speed>
+			<term>20</term>
+		</changeSpeed>
+	<wait>$2</wait>
+	</action>
+	<action>
+		<changeSpeed>
+			<speed>$1</speed>
+			<term>10</term>
+		</changeSpeed>
+	<wait>$3</wait>
+	</action>
+	<action>
+		<changeSpeed>
+			<speed>0</speed>
+			<term>20</term>
+		</changeSpeed>
+	<wait>$2</wait>
+	</action>
+	<action>
+		<changeSpeed>
+			<speed>$1</speed>
+			<term>10</term>
+		</changeSpeed>
+	<wait>$3</wait>
+	</action>
+	<action>
+		<changeSpeed>
+			<speed>0</speed>
+			<term>20</term>
+		</changeSpeed>
+	<wait>$2</wait>
+	</action>
+	<action>
+		<changeSpeed>
+			<speed>$1</speed>
+			<term>10</term>
+		</changeSpeed>
+	</action>
+    </bullet>
+
+    <bullet label="exploding">
+    <action>
+    <wait>100</wait>
+    <vanish/>
+    <repeat>
+        <times>12</times>
+	<action>
+	<fire>
+	<direction type="sequence">30</direction>
+	<speed>5</speed>
+	<bullet/>
+	</fire>
+	</action>
+    </repeat>
+    </action>
+    </bullet>
+
+</bulletml>
