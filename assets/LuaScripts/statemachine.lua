@@ -1,3 +1,5 @@
+-- based on https://github.com/kyleconroy/lua-state-machine
+
 local machine = {}
 machine.__index = machine
 
@@ -6,7 +8,7 @@ local ASYNC = "async"
 
 local function call_handler(handler, params)
   if handler then
-    return handler(unpack(params))
+    return handler(table.unpack(params))
   end
 end
 
@@ -101,6 +103,10 @@ function machine.create(options)
     fsm[name] = callback
   end
 
+  for name, update_function in pairs(options.update_functions or {}) do
+    fsm[name] = update_function
+  end
+
   return fsm
 end
 
@@ -116,6 +122,11 @@ end
 
 function machine:cannot(e)
   return not self:can(e)
+end
+
+function machine:runupdate(enemy, dt)
+  local name = self.current
+  call_handler(self["during" .. name], { enemy, dt })
 end
 
 function machine:todot(filename)

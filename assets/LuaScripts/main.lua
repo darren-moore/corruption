@@ -1,7 +1,6 @@
 require "utils"
 require "behaviours"
 local machine = require('statemachine')
--- https://github.com/kyleconroy/lua-state-machine
 
 enemyQueue = LuaList.new()
 enemies = {}
@@ -29,11 +28,15 @@ function AddEnemy(spawnTime, SB, SB_length, EB, spawnPosition, patternData, heal
     enemy.pos = spawnPosition
     enemy.patternData = patternData
     enemy.fireTime = patternData.delay
-    local fsm = machine.create({
+    enemy.fsm = machine.create({
         initial = 'sb',
         events = {
-          { name = 'toEB',  from = 'sb',  to = 'eb' }}})
-    enemy.fsm = fsm
+          { name = 'toEB',  from = 'sb',  to = 'eb' }}, 
+        update_functions = {
+          duringsb = function(enemy, dt) SB(enemy, dt) end, 
+          duringeb = function(enemy, dt) EB(enemy, dt) end,
+        }
+    })
 
     if health == nil then
         health = 5
@@ -66,11 +69,7 @@ function UpdateEnemy(enemy, dt, time)
         enemy.fsm:toEB()
     end
 
-    if (enemy.fsm.current == 'sb') then
-        enemy.SB(enemy, dt)
-    else
-        enemy.EB(enemy, dt)
-    end
+    enemy.fsm:runupdate(enemy, dt)
 
     Game_UpdateCollisionAgent(enemy.collisionAgent, enemy.pos.x, enemy.pos.y)
     if (Game_QueryCollisionAgent(enemy.collisionAgent)) then
